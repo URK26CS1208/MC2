@@ -1,0 +1,1776 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TravelMate | Travel Booking Website</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg: #071521;
+    --surface: #102433;
+    --surface2: #183344;
+    --text: #edf7fa;
+    --muted: #9bb2c0;
+    --primary: #16c5c0;
+    --secondary: #087e8b;
+    --border: #294556;
+    --shadow: 0 10px 30px rgba(0,0,0,.25);
+}
+
+body.light {
+    --bg: #f1f6f9;
+    --surface: #ffffff;
+    --surface2: #e6f0f4;
+    --text: #142b3a;
+    --muted: #647b89;
+    --primary: #087e8b;
+    --secondary: #075b70;
+    --border: #d6e2e9;
+    --shadow: 0 10px 30px rgba(0,0,0,.08);
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Arial, sans-serif;
+    transition: .3s;
+}
+
+button, input, select, textarea {
+    font-family: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+.hidden {
+    display: none !important;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* HOME PAGE */
+
+.home-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 22px 7%;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+}
+
+.logo {
+    font-size: 27px;
+    font-weight: bold;
+    color: var(--primary);
+}
+
+.logo span, .side-logo span {
+    color: var(--text);
+}
+
+.home-header nav {
+    display: flex;
+    gap: 30px;
+}
+
+.home-header nav a {
+    color: var(--muted);
+    font-weight: bold;
+}
+
+.home-header nav a:hover {
+    color: var(--primary);
+}
+
+.theme-btn {
+    background: var(--surface2);
+    color: var(--text);
+    border: 1px solid var(--border);
+    padding: 11px 17px;
+    border-radius: 8px;
+}
+
+.hero {
+    min-height: 570px;
+    padding: 70px 8%;
+    display: grid;
+    grid-template-columns: 1.3fr .7fr;
+    align-items: center;
+    gap: 50px;
+    background:
+    linear-gradient(90deg, rgba(7,21,33,.96), rgba(7,21,33,.75)),
+    url("https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1600")
+    center/cover;
+}
+
+body.light .hero {
+    background:
+    linear-gradient(90deg, rgba(10,35,50,.85), rgba(10,35,50,.6)),
+    url("https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1600")
+    center/cover;
+}
+
+.hero-content h1 {
+    font-size: 48px;
+    line-height: 1.2;
+    color: white;
+    margin: 18px 0;
+}
+
+.hero-content h1 span {
+    color: #16d5ce;
+}
+
+.eyebrow {
+    color: var(--primary);
+    font-weight: bold;
+    letter-spacing: 2px;
+    font-size: 12px;
+}
+
+.hero-description {
+    color: #d0e1e9;
+    line-height: 1.8;
+    max-width: 550px;
+    margin-bottom: 28px;
+}
+
+.primary-btn {
+    display: inline-block;
+    background: linear-gradient(120deg, #087e8b, #16c5c0);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 13px 22px;
+    font-weight: bold;
+}
+
+.primary-btn:hover {
+    opacity: .85;
+    transform: translateY(-2px);
+}
+
+.hero-stats {
+    display: flex;
+    gap: 40px;
+    margin-top: 45px;
+}
+
+.hero-stats div {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.hero-stats strong {
+    font-size: 24px;
+    color: #16d5ce;
+}
+
+.hero-stats small {
+    color: #d0e1e9;
+}
+
+/* SIGN IN */
+
+.signin-card {
+    background: #102433;
+    padding: 30px;
+    border: 1px solid #315267;
+    border-radius: 18px;
+    box-shadow: var(--shadow);
+}
+
+.signin-icon {
+    font-size: 35px;
+    color: #16d5ce;
+}
+
+.signin-card h2 {
+    color: white;
+    margin: 12px 0;
+    font-size: 28px;
+}
+
+.signin-card label {
+    display: block;
+    color: #d0e1e9;
+    margin-top: 17px;
+    font-size: 14px;
+}
+
+.signin-card input {
+    width: 100%;
+    padding: 13px;
+    margin-top: 8px;
+    border: 1px solid #315267;
+    border-radius: 7px;
+    background: #071521;
+    color: white;
+    outline: none;
+}
+
+.signin-card input:focus {
+    border-color: #16c5c0;
+}
+
+.full-btn {
+    width: 100%;
+    margin-top: 22px;
+}
+
+.muted {
+    color: var(--muted);
+    line-height: 1.7;
+    margin: 10px 0;
+}
+
+.signin-note {
+    color: #16c5c0;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.message {
+    color: #16c5c0;
+    margin-top: 12px;
+}
+
+/* FEATURES */
+
+.features-section, .about-section {
+    padding: 70px 8%;
+    text-align: center;
+}
+
+.features-section h2, .about-section h2 {
+    font-size: 30px;
+    margin: 15px 0 35px;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.feature-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 30px 18px;
+}
+
+.feature-card span {
+    font-size: 35px;
+}
+
+.feature-card h3 {
+    margin: 15px 0;
+    color: var(--primary);
+}
+
+.feature-card p {
+    color: var(--muted);
+    line-height: 1.6;
+}
+
+.about-section {
+    background: var(--surface);
+}
+
+.about-section p {
+    color: var(--muted);
+    max-width: 700px;
+    margin: auto;
+    line-height: 1.8;
+}
+
+footer {
+    text-align: center;
+    padding: 25px;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+}
+
+/* DASHBOARD */
+
+.sidebar {
+    width: 250px;
+    position: fixed;
+    height: 100vh;
+    overflow-y: auto;
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    padding: 25px 16px;
+    display: flex;
+    flex-direction: column;
+    z-index: 10;
+}
+
+.side-logo {
+    font-size: 25px;
+    font-weight: bold;
+    color: var(--primary);
+    margin-bottom: 35px;
+}
+
+.side-label {
+    color: var(--muted);
+    font-size: 11px;
+    letter-spacing: 2px;
+    margin: 10px 0;
+}
+
+.nav-btn {
+    background: transparent;
+    color: var(--muted);
+    border: none;
+    padding: 13px;
+    text-align: left;
+    border-radius: 8px;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.nav-btn:hover, .nav-btn.active {
+    background: var(--surface2);
+    color: var(--primary);
+}
+
+.sidebar-bottom {
+    margin-top: auto;
+}
+
+.logout-btn {
+    background: #542c37;
+    color: #ffb5bd;
+    border: none;
+    padding: 13px;
+    width: 100%;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+.dashboard-main {
+    margin-left: 250px;
+    padding: 30px;
+    min-height: 100vh;
+}
+
+.dash-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 35px;
+    gap: 15px;
+}
+
+.dash-header h1 {
+    margin-top: 10px;
+}
+
+.user-chip {
+    background: var(--surface2);
+    padding: 12px 18px;
+    border-radius: 30px;
+    color: var(--primary);
+}
+
+.content-section {
+    display: none;
+}
+
+.content-section.active {
+    display: block;
+}
+
+.content-section > h2 {
+    margin-bottom: 20px;
+    color: var(--primary);
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin: 25px 0;
+}
+
+.stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 22px;
+}
+
+.stat-card span {
+    font-size: 27px;
+}
+
+.stat-card h3 {
+    font-size: 30px;
+    color: var(--primary);
+    margin: 12px 0;
+}
+
+.stat-card p {
+    color: var(--muted);
+}
+
+.panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 25px;
+    border-radius: 13px;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow);
+}
+
+.panel h3 {
+    margin-bottom: 12px;
+}
+
+.inline-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 18px 0;
+}
+
+input, select, textarea {
+    background: var(--bg);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    padding: 12px;
+    outline: none;
+}
+
+input:focus, textarea:focus, select:focus {
+    border-color: var(--primary);
+}
+
+.inline-form input {
+    flex: 1;
+    min-width: 150px;
+}
+
+.item-list {
+    margin-top: 20px;
+}
+
+.list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 14px;
+    background: var(--surface2);
+    border-radius: 8px;
+    margin-bottom: 10px;
+    overflow-wrap: anywhere;
+}
+
+.list-item button {
+    background: #a83245;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+}
+
+.list-item.done {
+    opacity: .6;
+    text-decoration: line-through;
+}
+
+/* DESTINATIONS */
+
+.destination-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.destination-card {
+    overflow: hidden;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+}
+
+.destination-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.destination-info {
+    padding: 18px;
+}
+
+.destination-info p {
+    color: var(--muted);
+    margin: 10px 0;
+    line-height: 1.6;
+}
+
+.destination-info button {
+    margin-top: 10px;
+}
+
+/* PROGRESS */
+
+.progress-track {
+    background: var(--surface2);
+    height: 15px;
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 20px 0;
+}
+
+#progressBar {
+    width: 0;
+    height: 100%;
+    background: linear-gradient(90deg, #087e8b, #16c5c0);
+    transition: .3s;
+}
+
+/* BUDGET CALCULATOR */
+
+.budget-result {
+    color: var(--primary);
+    font-size: 28px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+/* MOTIVATION */
+
+.motivation-panel {
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.big-star {
+    font-size: 60px;
+    color: var(--primary);
+}
+
+.motivation-panel h2 {
+    margin: 25px 0;
+}
+
+/* CHATBOT */
+
+.chat-panel {
+    max-width: 750px;
+}
+
+.chat-messages {
+    height: 300px;
+    overflow-y: auto;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 15px;
+    margin: 15px 0;
+}
+
+.bot-message, .user-message {
+    padding: 12px;
+    border-radius: 10px;
+    max-width: 85%;
+    margin-bottom: 12px;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+.bot-message {
+    background: var(--surface2);
+    color: var(--text);
+}
+
+.user-message {
+    background: var(--secondary);
+    color: white;
+    margin-left: auto;
+}
+
+.small-note {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1000px) {
+    .hero {
+        grid-template-columns: 1fr;
+    }
+
+    .feature-grid, .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .destination-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media(max-width:700px) {
+    .home-header {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .home-header nav {
+        order: 3;
+        width: 100%;
+        justify-content: space-between;
+        gap: 10px;
+    }
+
+    .hero {
+        padding: 45px 6%;
+    }
+
+    .hero-content h1 {
+        font-size: 34px;
+    }
+
+    .hero-stats {
+        gap: 20px;
+    }
+
+    .feature-grid, .stats-grid, .destination-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+
+    .sidebar-bottom {
+        margin-top: 15px;
+    }
+
+    #dashboardPage {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .dashboard-main {
+        margin-left: 0;
+        padding: 20px;
+    }
+
+    .dash-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .inline-form {
+        flex-direction: column;
+    }
+
+    .inline-form input {
+        width: 100%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HOME PAGE -->
+
+<div id="homePage">
+
+<header class="home-header">
+    <a class="logo" href="#" onclick="showHome()">✈ Travel<span>Mate.</span></a>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#features">Features</a>
+        <a href="#about">About</a>
+    </nav>
+
+    <button class="theme-btn" id="themeToggle">☀ Light Mode</button>
+</header>
+
+<main class="hero" id="home">
+
+    <div class="hero-content">
+        <p class="eyebrow">EXPLORE THE WORLD WITH US</p>
+
+        <h1>Your Journey Begins With <span>TravelMate.</span></h1>
+
+        <p class="hero-description">
+            Discover amazing destinations, plan your trips,
+            manage your bookings and explore the world.
+            Your next adventure starts here!
+        </p>
+
+        <a href="#features" class="primary-btn">Explore Features ↗</a>
+
+        <div class="hero-stats">
+            <div>
+                <strong>50+</strong>
+                <small>Destinations</small>
+            </div>
+
+            <div>
+                <strong>24/7</strong>
+                <small>Travel Support</small>
+            </div>
+
+            <div>
+                <strong>100%</strong>
+                <small>Adventure</small>
+            </div>
+        </div>
+    </div>
+
+    <!-- SIGN IN -->
+
+    <div class="signin-card">
+        <div class="signin-icon">✈</div>
+
+        <p class="eyebrow">WELCOME TO TRAVELMATE</p>
+        <h2>Sign In</h2>
+
+        <p class="muted">Enter your details to open your travel dashboard.</p>
+
+        <form id="loginForm">
+            <label for="email">Email Address</label>
+            <input type="email" id="email"
+                   placeholder="Enter your email" required>
+
+            <label for="password">Password</label>
+            <input type="password" id="password"
+                   placeholder="Enter your password" required>
+
+            <button type="submit" class="primary-btn full-btn">
+                Sign In →
+            </button>
+        </form>
+
+        <p class="signin-note">Your next adventure starts today!</p>
+        <p id="loginMessage" class="message"></p>
+    </div>
+
+</main>
+
+<!-- FEATURES -->
+
+<section class="features-section" id="features">
+    <p class="eyebrow">WHAT WE OFFER</p>
+
+    <h2>Everything You Need for Your Journey</h2>
+
+    <div class="feature-grid">
+
+        <article class="feature-card">
+            <span>🌍</span>
+            <h3>Destinations</h3>
+            <p>Discover beautiful places around the world.</p>
+        </article>
+
+        <article class="feature-card">
+            <span>📅</span>
+            <h3>Trip Planner</h3>
+            <p>Organise your travel dates and activities.</p>
+        </article>
+
+        <article class="feature-card">
+            <span>🎫</span>
+            <h3>My Bookings</h3>
+            <p>Manage all your selected travel destinations.</p>
+        </article>
+
+        <article class="feature-card">
+            <span>🧮</span>
+            <h3>Budget Planner</h3>
+            <p>Calculate your travel expenses easily.</p>
+        </article>
+
+    </div>
+</section>
+
+<section class="about-section" id="about">
+    <h2>Discover More. Travel Further.</h2>
+
+    <p>
+        TravelMate is a travel booking website designed to make
+        trip planning simple and convenient. Explore destinations,
+        organise your travel schedule, manage bookings and
+        calculate your budget in one place.
+    </p>
+</section>
+
+<footer>
+    © 2026 TravelMate | Explore. Experience. Enjoy.
+</footer>
+
+</div>
+
+<!-- DASHBOARD -->
+
+<div id="dashboardPage" class="hidden">
+
+<aside class="sidebar">
+
+    <div class="side-logo">✈ Travel<span>Mate.</span></div>
+
+    <p class="side-label">MAIN MENU</p>
+
+    <button class="nav-btn active" data-section="dashboard">
+        🏠 Dashboard
+    </button>
+
+    <button class="nav-btn" data-section="destinations">
+        🌍 Destinations
+    </button>
+
+    <button class="nav-btn" data-section="planner">
+        📅 Trip Planner
+    </button>
+
+    <button class="nav-btn" data-section="bookings">
+        🎫 My Bookings
+    </button>
+
+    <button class="nav-btn" data-section="itinerary">
+        🕒 Itinerary
+    </button>
+
+    <button class="nav-btn" data-section="notes">
+        📝 Travel Notes
+    </button>
+
+    <button class="nav-btn" data-section="progress">
+        📊 My Progress
+    </button>
+
+    <button class="nav-btn" data-section="budget">
+        🧮 Budget Calculator
+    </button>
+
+    <button class="nav-btn" data-section="tips">
+        💡 Travel Tips
+    </button>
+
+    <button class="nav-btn" data-section="motivation">
+        ✨ Motivation
+    </button>
+
+    <button class="nav-btn" data-section="assistant">
+        💬 Travel Assistant
+    </button>
+
+    <div class="sidebar-bottom">
+        <button id="dashboardTheme" class="nav-btn">
+            ☀ Toggle Theme
+        </button>
+
+        <button id="logoutBtn" class="logout-btn">
+            ↩ Logout
+        </button>
+    </div>
+
+</aside>
+
+<main class="dashboard-main">
+
+<header class="dash-header">
+    <div>
+        <p class="eyebrow">YOUR TRAVEL WORKSPACE</p>
+        <h1 id="welcomeTitle">Welcome Back!</h1>
+        <p class="muted">Plan your next unforgettable journey.</p>
+    </div>
+
+    <div class="user-chip">
+        👤 <span id="userEmail">Traveller</span>
+    </div>
+</header>
+
+<!-- 1 DASHBOARD -->
+
+<section class="content-section active" id="dashboard">
+
+    <h2>Your Travel Dashboard</h2>
+    <p class="muted">Your journey, your plans, your adventures.</p>
+
+    <div class="stats-grid">
+
+        <div class="stat-card">
+            <span>🌍</span>
+            <h3 id="destinationCount">0</h3>
+            <p>Places booked</p>
+        </div>
+
+        <div class="stat-card">
+            <span>🎫</span>
+            <h3 id="bookingCount">0</h3>
+            <p>Total bookings</p>
+        </div>
+
+        <div class="stat-card">
+            <span>📅</span>
+            <h3 id="planCount">0</h3>
+            <p>Trip plans</p>
+        </div>
+
+        <div class="stat-card">
+            <span>📝</span>
+            <h3 id="noteCount">0</h3>
+            <p>Travel notes</p>
+        </div>
+
+    </div>
+
+    <div class="panel">
+        <h3>✈ Today's Travel Reminder</h3>
+        <p class="muted">
+            Every great journey begins with a plan.
+            Choose your destination, prepare your budget
+            and enjoy your adventure!
+        </p>
+
+        <button class="primary-btn" onclick="openSection('destinations')">
+            Explore Destinations →
+        </button>
+    </div>
+
+</section>
+
+<!-- 2 DESTINATIONS -->
+
+<section class="content-section" id="destinations">
+
+    <h2>🌍 Explore Destinations</h2>
+    <p class="muted">Choose your favourite destination and book your trip.</p>
+
+    <div class="destination-grid">
+
+        <article class="destination-card">
+            <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=600"
+                 alt="Ooty landscape">
+
+            <div class="destination-info">
+                <h3>Ooty</h3>
+                <p>Beautiful hills, gardens, tea estates and cool weather.</p>
+                <strong>Starting from ₹5,000</strong>
+                <br>
+                <button class="primary-btn" onclick="bookPlace('Ooty')">
+                    Book Now
+                </button>
+            </div>
+        </article>
+
+        <article class="destination-card">
+            <img src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=600"
+                 alt="Goa beach">
+
+            <div class="destination-info">
+                <h3>Goa</h3>
+                <p>Enjoy beaches, sunsets and exciting water activities.</p>
+                <strong>Starting from ₹8,000</strong>
+                <br>
+                <button class="primary-btn" onclick="bookPlace('Goa')">
+                    Book Now
+                </button>
+            </div>
+        </article>
+
+        <article class="destination-card">
+            <img src="https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=600"
+                 alt="Manali mountains">
+
+            <div class="destination-info">
+                <h3>Manali</h3>
+                <p>Discover snowy mountains and beautiful landscapes.</p>
+                <strong>Starting from ₹12,000</strong>
+                <br>
+                <button class="primary-btn" onclick="bookPlace('Manali')">
+                    Book Now
+                </button>
+            </div>
+        </article>
+
+    </div>
+
+</section>
+
+<!-- 3 TRIP PLANNER -->
+
+<section class="content-section" id="planner">
+
+    <h2>📅 Trip Planner</h2>
+
+    <div class="panel">
+
+        <form id="plannerForm" class="inline-form">
+
+            <input id="tripPlace" placeholder="Destination" required>
+
+            <input id="tripDate" type="date" required>
+
+            <input id="tripPeople" type="number"
+                   min="1" placeholder="Travellers" required>
+
+            <button class="primary-btn">Add Trip</button>
+
+        </form>
+
+        <div id="plannerList" class="item-list"></div>
+
+    </div>
+
+</section>
+
+<!-- 4 BOOKINGS -->
+
+<section class="content-section" id="bookings">
+
+    <h2>🎫 My Bookings</h2>
+
+    <div class="panel">
+        <p class="muted">Your selected travel destinations appear here.</p>
+        <div id="bookingList" class="item-list"></div>
+    </div>
+
+</section>
+
+<!-- 5 ITINERARY -->
+
+<section class="content-section" id="itinerary">
+
+    <h2>🕒 Travel Itinerary</h2>
+
+    <div class="panel">
+
+        <form id="timeForm" class="inline-form">
+
+            <input id="activityInput"
+                   placeholder="Activity or place" required>
+
+            <input id="activityDate" type="date" required>
+
+            <input id="activityTime" type="time" required>
+
+            <button class="primary-btn">Add Activity</button>
+
+        </form>
+
+        <div id="timeList" class="item-list"></div>
+
+    </div>
+
+</section>
+
+<!-- 6 NOTES -->
+
+<section class="content-section" id="notes">
+
+    <h2>📝 My Travel Notes</h2>
+
+    <div class="panel">
+
+        <input id="noteTitle" placeholder="Note title">
+
+        <br><br>
+
+        <textarea id="noteText" rows="5"
+                  style="width:100%"
+                  placeholder="Write your travel notes here..."></textarea>
+
+        <br><br>
+
+        <button class="primary-btn" id="saveNote">Save Note</button>
+
+        <div id="notesList" class="item-list"></div>
+
+    </div>
+
+</section>
+
+<!-- 7 PROGRESS -->
+
+<section class="content-section" id="progress">
+
+    <h2>📊 My Travel Progress</h2>
+
+    <div class="panel">
+
+        <h3>Trip Planning Progress</h3>
+
+        <div class="progress-track">
+            <div id="progressBar"></div>
+        </div>
+
+        <h2 id="progressText">0% completed</h2>
+
+        <p class="muted">
+            Add destinations and plan your trips to track your progress.
+        </p>
+
+    </div>
+
+</section>
+
+<!-- 8 BUDGET -->
+
+<section class="content-section" id="budget">
+
+    <h2>🧮 Travel Budget Calculator</h2>
+
+    <div class="panel">
+
+        <p class="muted">
+            Calculate the estimated cost of your journey.
+        </p>
+
+        <label>Travel Cost (₹)</label>
+        <input type="number" id="travelCost"
+               min="0" placeholder="Enter travel cost">
+
+        <br><br>
+
+        <label>Hotel Cost (₹)</label>
+        <input type="number" id="hotelCost"
+               min="0" placeholder="Enter hotel cost">
+
+        <br><br>
+
+        <label>Food Cost (₹)</label>
+        <input type="number" id="foodCost"
+               min="0" placeholder="Enter food cost">
+
+        <br><br>
+
+        <label>Other Expenses (₹)</label>
+        <input type="number" id="otherCost"
+               min="0" placeholder="Enter other expenses">
+
+        <br><br>
+
+        <button class="primary-btn" id="calculateBudget">
+            Calculate Budget
+        </button>
+
+        <div class="budget-result" id="budgetResult">
+            Total: ₹0
+        </div>
+
+    </div>
+
+</section>
+
+<!-- 9 TRAVEL TIPS -->
+
+<section class="content-section" id="tips">
+
+    <h2>💡 Travel Tips</h2>
+
+    <div class="panel">
+        <h3>Before Your Journey</h3>
+        <p class="muted">✔ Carry your identity proof.</p>
+        <p class="muted">✔ Book your tickets in advance.</p>
+        <p class="muted">✔ Check the weather conditions.</p>
+        <p class="muted">✔ Prepare your travel budget.</p>
+        <p class="muted">✔ Pack essential medicines and clothes.</p>
+        <p class="muted">✔ Keep emergency contact details.</p>
+        <p class="muted">✔ Protect your money and belongings.</p>
+    </div>
+
+</section>
+
+<!-- 10 MOTIVATION -->
+
+<section class="content-section" id="motivation">
+
+    <h2>✨ Travel Inspiration</h2>
+
+    <div class="panel motivation-panel">
+
+        <div class="big-star">✦</div>
+
+        <h2 id="quoteText">
+            The world is waiting for you. Explore it!
+        </h2>
+
+        <button class="primary-btn" id="newQuote">
+            New Inspiration
+        </button>
+
+    </div>
+
+</section>
+
+<!-- 11 CHATBOT -->
+
+<section class="content-section" id="assistant">
+
+    <h2>💬 TravelMate Assistant</h2>
+
+    <div class="panel chat-panel">
+
+        <p class="muted">
+            Ask me about destinations, bookings, budget and travel tips.
+        </p>
+
+        <div id="chatMessages" class="chat-messages">
+
+            <div class="bot-message">
+                Hello! 👋 Welcome to TravelMate!
+                I can help you explore Ooty, Goa, Manali,
+                travel bookings, budgets and travel tips.
+                Where would you like to go?
+            </div>
+
+        </div>
+
+        <form id="chatForm" class="inline-form">
+
+            <input id="chatInput"
+                   placeholder="Ask your travel question..."
+                   required>
+
+            <button class="primary-btn">Send</button>
+
+        </form>
+
+        <p class="small-note">
+            This is a rule-based demo assistant, not a live AI service.
+        </p>
+
+    </div>
+
+</section>
+
+</main>
+</div>
+
+<script>
+
+/* LOGIN */
+
+const homePage = document.getElementById("homePage");
+const dashboardPage = document.getElementById("dashboardPage");
+
+document.getElementById("loginForm").addEventListener("submit", function(e) {
+
+    e.preventDefault();
+
+    const email = document.getElementById("email").value.trim();
+
+    document.getElementById("loginMessage").textContent =
+        "Welcome! Opening your travel dashboard...";
+
+    setTimeout(function() {
+
+        homePage.classList.add("hidden");
+        dashboardPage.classList.remove("hidden");
+
+        document.getElementById("userEmail").textContent = email;
+        document.getElementById("welcomeTitle").textContent =
+            "Welcome, Traveller!";
+
+        updateDashboard();
+
+    }, 500);
+
+});
+
+/* NAVIGATION */
+
+function openSection(section) {
+
+    document.querySelectorAll(".content-section").forEach(s => {
+        s.classList.remove("active");
+    });
+
+    document.getElementById(section).classList.add("active");
+
+    document.querySelectorAll(".nav-btn[data-section]").forEach(btn => {
+        btn.classList.toggle("active", btn.dataset.section === section);
+    });
+
+}
+
+document.querySelectorAll(".nav-btn[data-section]").forEach(btn => {
+
+    btn.addEventListener("click", function() {
+        openSection(this.dataset.section);
+    });
+
+});
+
+/* LOGOUT */
+
+document.getElementById("logoutBtn").addEventListener("click", function() {
+
+    dashboardPage.classList.add("hidden");
+    homePage.classList.remove("hidden");
+
+    document.getElementById("loginForm").reset();
+    document.getElementById("loginMessage").textContent = "";
+
+});
+
+/* DARK AND LIGHT MODE */
+
+function toggleTheme() {
+
+    document.body.classList.toggle("light");
+
+    const light = document.body.classList.contains("light");
+
+    localStorage.setItem("travelmate-mode", light ? "light" : "dark");
+
+    document.getElementById("themeToggle").textContent =
+        light ? "🌙 Dark Mode" : "☀ Light Mode";
+
+}
+
+document.getElementById("themeToggle").addEventListener("click", toggleTheme);
+document.getElementById("dashboardTheme").addEventListener("click", toggleTheme);
+
+if (localStorage.getItem("travelmate-mode") === "light") {
+    document.body.classList.add("light");
+    document.getElementById("themeToggle").textContent = "🌙 Dark Mode";
+}
+
+/* STORAGE */
+
+function getData(key) {
+    return JSON.parse(localStorage.getItem("travelmate-" + key) || "[]");
+}
+
+function saveData(key, data) {
+    localStorage.setItem("travelmate-" + key, JSON.stringify(data));
+}
+
+/* BOOKINGS */
+
+function bookPlace(place) {
+
+    const bookings = getData("bookings");
+
+    bookings.push({
+        place: place,
+        date: new Date().toLocaleDateString()
+    });
+
+    saveData("bookings", bookings);
+
+    displayBookings();
+    updateDashboard();
+
+    alert(place + " added to your bookings!");
+
+}
+
+function displayBookings() {
+
+    const list = document.getElementById("bookingList");
+    const bookings = getData("bookings");
+
+    list.innerHTML = "";
+
+    if (bookings.length === 0) {
+        list.textContent = "No bookings yet. Explore destinations!";
+        return;
+    }
+
+    bookings.forEach((booking, index) => {
+
+        const item = document.createElement("div");
+        item.className = "list-item";
+
+        const text = document.createElement("span");
+        text.textContent = "✈ " + booking.place + " - " + booking.date;
+
+        const remove = document.createElement("button");
+        remove.textContent = "Cancel";
+        remove.onclick = () => {
+
+            bookings.splice(index, 1);
+            saveData("bookings", bookings);
+            displayBookings();
+            updateDashboard();
+
+        };
+
+        item.append(text, remove);
+        list.appendChild(item);
+
+    });
+
+}
+
+/* TRIP PLANNER */
+
+document.getElementById("plannerForm").addEventListener("submit", function(e) {
+
+    e.preventDefault();
+
+    const plans = getData("plans");
+
+    plans.push({
+        place: document.getElementById("tripPlace").value,
+        date: document.getElementById("tripDate").value,
+        people: document.getElementById("tripPeople").value
+    });
+
+    saveData("plans", plans);
+
+    this.reset();
+
+    displayPlans();
+    updateDashboard();
+
+});
+
+function displayPlans() {
+
+    const plans = getData("plans");
+    const list = document.getElementById("plannerList");
+
+    list.innerHTML = "";
+
+    plans.forEach((plan, index) => {
+
+        const item = document.createElement("div");
+        item.className = "list-item";
+
+        const text = document.createElement("span");
+        text.textContent =
+            "🌍 " + plan.place + " | " + plan.date +
+            " | Travellers: " + plan.people;
+
+        const remove = document.createElement("button");
+        remove.textContent = "Delete";
+        remove.onclick = () => {
+
+            plans.splice(index, 1);
+            saveData("plans", plans);
+            displayPlans();
+            updateDashboard();
+
+        };
+
+        item.append(text, remove);
+        list.appendChild(item);
+
+    });
+
+}
+
+/* ITINERARY */
+
+document.getElementById("timeForm").addEventListener("submit", function(e) {
+
+    e.preventDefault();
+
+    const activities = getData("activities");
+
+    activities.push({
+        name: document.getElementById("activityInput").value,
+        date: document.getElementById("activityDate").value,
+        time: document.getElementById("activityTime").value
+    });
+
+    saveData("activities", activities);
+
+    this.reset();
+    displayActivities();
+
+});
+
+function displayActivities() {
+
+    const activities = getData("activities");
+    const list = document.getElementById("timeList");
+
+    list.innerHTML = "";
+
+    activities.forEach((activity, index) => {
+
+        const item = document.createElement("div");
+        item.className = "list-item";
+
+        const text = document.createElement("span");
+        text.textContent =
+            "🕒 " + activity.name + " | " +
+            activity.date + " | " + activity.time;
+
+        const remove = document.createElement("button");
+        remove.textContent = "Delete";
+
+        remove.onclick = () => {
+            activities.splice(index, 1);
+            saveData("activities", activities);
+            displayActivities();
+        };
+
+        item.append(text, remove);
+        list.appendChild(item);
+
+    });
+
+}
+
+/* NOTES */
+
+document.getElementById("saveNote").addEventListener("click", function() {
+
+    const title = document.getElementById("noteTitle").value.trim();
+    const content = document.getElementById("noteText").value.trim();
+
+    if (!title || !content) {
+        alert("Please enter a note title and content.");
+        return;
+    }
+
+    const notes = getData("notes");
+
+    notes.push({ title, content });
+
+    saveData("notes", notes);
+
+    document.getElementById("noteTitle").value = "";
+    document.getElementById("noteText").value = "";
+
+    displayNotes();
+    updateDashboard();
+
+});
+
+function displayNotes() {
+
+    const notes = getData("notes");
+    const list = document.getElementById("notesList");
+
+    list.innerHTML = "";
+
+    notes.forEach((note, index) => {
+
+        const item = document.createElement("div");
+        item.className = "list-item";
+
+        const text = document.createElement("span");
+        text.textContent = "📝 " + note.title + ": " + note.content;
+
+        const remove = document.createElement("button");
+        remove.textContent = "Delete";
+
+        remove.onclick = () => {
+
+            notes.splice(index, 1);
+            saveData("notes", notes);
+            displayNotes();
+            updateDashboard();
+
+        };
+
+        item.append(text, remove);
+        list.appendChild(item);
+
+    });
+
+}
+
+/* BUDGET CALCULATOR */
+
+document.getElementById("calculateBudget").addEventListener("click", function() {
+
+    const ids = ["travelCost", "hotelCost", "foodCost", "otherCost"];
+
+    const values = ids.map(id => {
+        return document.getElementById(id).value === ""
+            ? 0 : Number(document.getElementById(id).value);
+    });
+
+    if (values.some(v => !Number.isFinite(v) || v < 0)) {
+        alert("Please enter valid positive amounts.");
+        return;
+    }
+
+    const total = values.reduce((sum, value) => sum + value, 0);
+
+    document.getElementById("budgetResult").textContent =
+        "Total Travel Budget: ₹" + total.toLocaleString("en-IN");
+
+});
+
+/* PROGRESS */
+
+function updateDashboard() {
+
+    const bookings = getData("bookings");
+    const plans = getData("plans");
+    const notes = getData("notes");
+
+    document.getElementById("destinationCount").textContent =
+        bookings.length;
+
+    document.getElementById("bookingCount").textContent =
+        bookings.length;
+
+    document.getElementById("planCount").textContent =
+        plans.length;
+
+    document.getElementById("noteCount").textContent =
+        notes.length;
+
+    const progress = Math.min(
+        100,
+        Math.round((bookings.length + plans.length) / 10 * 100)
+    );
+
+    document.getElementById("progressBar").style.width =
+        progress + "%";
+
+    document.getElementById("progressText").textContent =
+        progress + "% completed";
+
+}
+
+/* MOTIVATION */
+
+const quotes = [
+    "The world is waiting for you. Explore it!",
+    "Travel is the only thing you buy that makes you richer.",
+    "Collect moments, not things.",
+    "Adventure begins where your comfort zone ends.",
+    "Every journey creates a beautiful memory."
+];
+
+document.getElementById("newQuote").addEventListener("click", function() {
+
+    const random = Math.floor(Math.random() * quotes.length);
+
+    document.getElementById("quoteText").textContent =
+        quotes[random];
+
+});
+
+/* TRAVEL CHATBOT */
+
+function addChatMessage(message, type) {
+
+    const messages = document.getElementById("chatMessages");
+
+    const div = document.createElement("div");
+    div.className = type;
+    div.textContent = message;
+
+    messages.appendChild(div);
+
+    messages.scrollTop = messages.scrollHeight;
+
+}
+
+function getBotReply(message) {
+
+    const text = message.toLowerCase();
+
+    if (text.includes("hello") || text.includes("hi")) {
+        return "Hello! 👋 Welcome to TravelMate. How can I help you?";
+    }
+
+    if (text.includes("ooty")) {
+        return "Ooty is a beautiful hill station in Tamil Nadu, famous for tea gardens, mountains and cool weather.";
+    }
+
+    if (text.includes("goa")) {
+        return "Goa is famous for its beaches, water sports, seafood and beautiful sunsets.";
+    }
+
+    if (text.includes("manali")) {
+        return "Manali is a mountain destination famous for snow, adventure activities and scenic views.";
+    }
+
+    if (text.includes("destination") || text.includes("places")) {
+        return "Our popular destinations are Ooty, Goa and Manali. Visit the Destinations section to explore them.";
+    }
+
+    if (text.includes("book") || text.includes("booking")) {
+        return "Open the Destinations section, select your favourite place and click Book Now. Your booking will appear under My Bookings.";
+    }
+
+    if (text.includes("budget") || text.includes("price") ||
+        text.includes("cost")) {
+        return "Use our Budget Calculator to calculate travel, hotel, food and other expenses.";
+    }
+
+    if (text.includes("hotel")) {
+        return "Before choosing a hotel, check its location, facilities, reviews and total price.";
+    }
+
+    if (text.includes("tip") || text.includes("travel")) {
+        return "Travel tips: Carry ID proof, check the weather, plan your budget, pack essentials and keep your tickets safe.";
+    }
+
+    if (text.includes("thank")) {
+        return "You're welcome! Have a safe and happy journey! ✈️";
+    }
+
+    if (text.includes("help")) {
+        return "I can help you with destinations, Ooty, Goa, Manali, bookings, hotels, budget calculation and travel tips.";
+    }
+
+    return "Sorry, I did not understand. Try asking about Ooty, Goa, Manali, bookings, hotels or travel tips.";
+}
+
+document.getElementById("chatForm").addEventListener("submit", function(e) {
+
+    e.preventDefault();
+
+    const input = document.getElementById("chatInput");
+    const message = input.value.trim();
+
+    if (!message) return;
+
+    addChatMessage(message, "user-message");
+
+    input.value = "";
+
+    const reply = getBotReply(message);
+
+    addChatMessage(reply, "bot-message");
+
+});
+
+/* INITIAL DISPLAY */
+
+displayBookings();
+displayPlans();
+displayActivities();
+displayNotes();
+updateDashboard();
+
+</script>
+
+</body>
+</html>
